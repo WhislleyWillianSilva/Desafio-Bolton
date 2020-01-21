@@ -14,8 +14,14 @@ Algumas das tecnologias utilizadas no desenvolvimento foram:
 * FlyWay
 * Jackson - fasterxml
 * Docker
+* Swagger
 
 Seguindo os conceitos da arquitetura em camadas e delegando apenas as responsabilidades necessárias para cada classe do sistema.
+
+Para acessar os Endpoints pelo Swagger, acessar o link abaixo:
+```
+http://localhost:8080//swagger-ui.html
+```
 
 ## Executar a Aplicação
 

@@ -8,13 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -50,7 +47,7 @@ public class InvoiceController {
 		return ResponseEntity.ok().build();
 	}
 
-	@GetMapping()
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Iterable<Invoice>> findAllInvoices() {
 		Iterable<Invoice> result = this.invoiceService.findAllInvoices();
 		if (result != null) {
@@ -59,7 +56,7 @@ public class InvoiceController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@GetMapping("/accesskey/{accessKey}")
+	@GetMapping(path = "/accesskey/{accessKey}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Invoice> findOneByAccessKey(
 			@PathVariable (name = "accessKey") String accessKey ) {
 		Optional<Invoice> result = this.invoiceService.findOneByAccessKey(accessKey);
@@ -67,15 +64,5 @@ public class InvoiceController {
 			return ResponseEntity.ok(result.get());
 		}
 		return ResponseEntity.notFound().build();
-	}
-	
-	@PostMapping
-	public ResponseEntity<Invoice> registerInvoice(
-			@RequestBody Invoice notaFiscal) {
-		Invoice result = this.invoiceService.registerInvoice(notaFiscal);
-		if (result != null) {
-			return new ResponseEntity<>(HttpStatus.CREATED);
-		}
-		return ResponseEntity.badRequest().build();
 	}
 }

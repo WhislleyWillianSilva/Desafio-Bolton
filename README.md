@@ -38,14 +38,19 @@ Para verificar se o container está funcional, basta executar:
 sudo docker ps
 ```
 
-Com o container em execução podemos agora iniciar a nossa aplicação do backend. Podemos executar pelo IDE Eclipse ou Spring Tool Suite (O qual foi utilizado no decorrer do desenvolvimento). 
-Podemos dar o `start` na aplicação pelo menu `Boot Dashboard` clicando com o botão direito em cima do projeto e após isso clicar em `(Re)start`.
+Com o container em execução podemos agora iniciar a nossa aplicação do backend com os seguintes comandos na raiz do projeto:
+
+```
+./mvnw clean package
+
+./mvn spring-boot:run
+```
 
 À partir deste momento será iniciado a nossa aplicação e o Flyway irá criar a tabela `invoices` automaticamente no banco de dados que será utilizada pela aplicação.
 
 Com a nossa aplicação e o container do docker em execução, é possível utilizarmos os end-points de consulta e de integração com a API da Arquivei.
 
-Quando precisar parar o container do docker, executar o seguinte comando:
+Para encerrar o container do docker, executar o seguinte comando:
 
 ```
 sudo docker-compose down
@@ -54,5 +59,7 @@ sudo docker-compose down
 ### End-points
 
 * Integração com a API da Arquivei: `http://localhost:8080/api/v1/nfe/integrate-invoices`
+
 * Consulta de todos os registros: `http://localhost:8080/api/v1/nfe`
+
 * Consulta de um único registro passando como parâmetro o `access_key`: `http://localhost:8080/api/v1/nfe/accesskey/{access_key}` --> onde o {access_key} é alterado pela `chave de acesso` da nota fiscal.

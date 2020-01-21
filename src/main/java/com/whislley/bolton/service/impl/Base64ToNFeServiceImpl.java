@@ -24,9 +24,9 @@ public class Base64ToNFeServiceImpl implements Base64ToNFeService {
 		}
 		String xml = new String(Base64.getDecoder().decode(base64));
 		Document doc = parseStringToXml(xml);
-		double valorNFe = Double.parseDouble(
+		double amountNFe = Double.parseDouble(
 				doc.getDocumentElement().getElementsByTagName("vNF").item(0).getChildNodes().item(0).getNodeValue());
-		return valorNFe;
+		return amountNFe;
 	}
 	
 	private static Document parseStringToXml(String xml) {

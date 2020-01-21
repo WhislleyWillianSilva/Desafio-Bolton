@@ -18,11 +18,6 @@ Algumas das tecnologias utilizadas no desenvolvimento foram:
 
 Seguindo os conceitos da arquitetura em camadas e delegando apenas as responsabilidades necessárias para cada classe do sistema.
 
-Para acessar os Endpoints pelo Swagger, acessar o link abaixo:
-```
-http://localhost:8080//swagger-ui.html
-```
-
 ## Executar a Aplicação
 
 Como a aplicação utiliza o docker, para executar a aplicação deverá seguir os seguintes passos:
@@ -55,6 +50,11 @@ Com o container em execução podemos agora iniciar a nossa aplicação do backe
 À partir deste momento será iniciado a nossa aplicação e o Flyway irá criar a tabela `invoices` automaticamente no banco de dados que será utilizada pela aplicação.
 
 Com a nossa aplicação e o container do docker em execução, é possível utilizarmos os end-points de consulta e de integração com a API da Arquivei.
+
+Para acessar os Endpoints pelo Swagger, acessar o endereço abaixo:
+```
+http://localhost:8080//swagger-ui.html
+```
 
 Para encerrar o container do docker, executar o seguinte comando:
 

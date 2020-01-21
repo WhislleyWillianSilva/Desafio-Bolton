@@ -14,7 +14,7 @@ public interface InvoiceService {
 
 	Optional<Invoice> findOneByAccessKey(String accessKey);
 
-	Invoice registerInvoice(Invoice notaFiscal);
+	Invoice registerInvoice(Invoice invoice);
 	
 	void integrationApi(String endPoint, HttpMethod httpMethod, HttpEntity<String> entity,
 			RestTemplate restTemplate) throws Exception;

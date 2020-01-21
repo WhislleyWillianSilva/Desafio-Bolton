@@ -19,10 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.whislley.bolton.model.dto.InvoiceDataDto;
-import com.whislley.bolton.model.dto.InvoiceDto;
 import com.whislley.bolton.model.entity.Invoice;
-import com.whislley.bolton.service.Base64ToNFeService;
 import com.whislley.bolton.service.InvoiceService;
 
 @RestController
@@ -31,8 +28,6 @@ public class InvoiceController {
 
 	@Autowired
 	private InvoiceService invoiceService;
-	@Autowired
-	private Base64ToNFeService base64ToNFe;
 	
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
@@ -41,20 +36,14 @@ public class InvoiceController {
 	
 	@GetMapping("/integrate-invoices")
 	public ResponseEntity<Void> integrateInvoices(RestTemplate restTemplate){
+		String endPoint = "https://sandbox-api.arquivei.com.br/v1/nfe/received";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.add("x-api-id", "f96ae22f7c5d74fa4d78e764563d52811570588e");
 		headers.add("x-api-key", "cc79ee9464257c9e1901703e04ac9f86b0f387c2");
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
-			InvoiceDto notas = restTemplate.exchange("https://sandbox-api.arquivei.com.br/v1/nfe/received",
-					HttpMethod.GET, entity, InvoiceDto.class).getBody();
-			for (InvoiceDataDto data : notas.getData()) {
-				Invoice invoice = new Invoice();
-				invoice.setAccessKey(data.getAccessKey());
-				invoice.setAmount(base64ToNFe.amountInvoice(data.getXml()));
-				registerInvoice(invoice);
-			}
+			this.invoiceService.integrationApi(endPoint, HttpMethod.GET, entity, restTemplate);
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().build();
 		}

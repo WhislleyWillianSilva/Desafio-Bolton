@@ -58,8 +58,8 @@ sudo docker-compose down
 
 ### End-points
 
-* Integração com a API da Arquivei: `http://localhost:8080/api/v1/nfe/integrate-invoices`
+* Integração com a API da Arquivei: `GET http://localhost:8080/api/v1/nfe/integrate-invoices`
 
-* Consulta de todos os registros: `http://localhost:8080/api/v1/nfe`
+* Consulta de todos os registros: `GET http://localhost:8080/api/v1/nfe`
 
-* Consulta de um único registro passando como parâmetro o `access_key`: `http://localhost:8080/api/v1/nfe/accesskey/{access_key}` --> onde o {access_key} é alterado pela `chave de acesso` da nota fiscal.
+* Consulta de um único registro passando como parâmetro o **access_key**: `GET http://localhost:8080/api/v1/nfe/accesskey/{access_key}` --> onde o {access_key} é alterado pela **chave de acesso** da nota fiscal.

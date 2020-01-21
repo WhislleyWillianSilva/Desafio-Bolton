@@ -7,10 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "invoices")
 public class Invoice {
 	
@@ -21,15 +25,4 @@ public class Invoice {
 	private String accessKey;
 	@Column(name = "amount")
 	private double amount;
-	
-	public Invoice() {
-		
-	}
-	
-	public Invoice (long id, String accessKey, double amount) {
-		this.id = id;
-		this.accessKey = accessKey;
-		this.amount = amount;
-	}
-	
 }

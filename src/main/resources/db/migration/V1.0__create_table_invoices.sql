@@ -3,7 +3,7 @@ USE template;
 CREATE TABLE invoices (
     id integer NOT NULL AUTO_INCREMENT,
     access_key varchar(200) NOT NULL,
-    amount decimal NOT NULL,
+    amount double(15,2) NOT NULL,
     PRIMARY KEY (id)
 );
 

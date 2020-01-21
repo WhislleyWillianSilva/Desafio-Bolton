@@ -27,6 +27,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	@Override
 	public Invoice registerInvoice(Invoice invoice) {
-		return this.invoiceRepository.save(invoice);
+		Optional<Invoice> result = findOneByAccessKey(invoice.getAccessKey());
+		if (result.isEmpty()) {
+			return this.invoiceRepository.save(invoice);
+		}
+		return null;
 	}
 }

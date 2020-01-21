@@ -43,7 +43,7 @@ Com o container em execução podemos agora iniciar a nossa aplicação do backe
 ```
 ./mvnw clean package
 
-./mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 
 À partir deste momento será iniciado a nossa aplicação e o Flyway irá criar a tabela `invoices` automaticamente no banco de dados que será utilizada pela aplicação.
